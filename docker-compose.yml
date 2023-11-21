@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mynetwork
+
+
+  server:
+    build:
+      context: .
+    container_name: server_fastapi
+    ports:
+      - "8000:8000"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
